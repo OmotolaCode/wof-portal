@@ -114,6 +114,10 @@ $recent_enrollments = $db->resultSet();
             <i class="fas fa-clipboard-check text-2xl mb-2"></i>
             <div class="font-semibold">Examinations</div>
         </a>
+        <a href="testimonials.php" class="bg-orange-600 text-white p-4 rounded-lg hover:bg-orange-700 transition text-center">
+            <i class="fas fa-quote-left text-2xl mb-2"></i>
+            <div class="font-semibold">Testimonials</div>
+        </a>
     </div>
     
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">

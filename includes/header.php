@@ -56,6 +56,11 @@ $current_user = $auth->getCurrentUser();
                                         <i class="fas fa-cog mr-2"></i>Admin Panel
                                     </a>
                                 <?php endif; ?>
+                                <?php if($_SESSION['user_status'] === 'graduated' || $_SESSION['user_status'] === 'enrolled'): ?>
+                                    <a href="testimonial.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-star mr-2"></i>Share Experience
+                                    </a>
+                                <?php endif; ?>
                                 <a href="showcase.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                     <i class="fas fa-star mr-2"></i>Graduate Showcase
                                 </a>

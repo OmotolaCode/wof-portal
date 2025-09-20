@@ -1,3 +1,18 @@
+
+// Get featured testimonials
+$db = new Database();
+$db->query('SELECT t.*, u.first_name, u.last_name, c.name as cohort_name 
+           FROM testimonials t 
+           JOIN users u ON t.user_id = u.id 
+           JOIN cohorts c ON t.cohort_id = c.id 
+           WHERE t.is_active = 1 AND t.is_featured = 1 
+           ORDER BY t.created_at DESC 
+           LIMIT 3');
+$featured_testimonials = $db->resultSet();
+
+// Get active cohorts for enrollment
+$db->query('SELECT * FROM cohorts WHERE status IN ("upcoming", "active") ORDER BY start_date ASC LIMIT 3');
+$active_cohorts = $db->resultSet();
 <?php include 'includes/header.php'; ?>
 
 <!-- Hero Section -->
@@ -19,17 +34,17 @@
             </h1>
             <p class="text-2xl mb-4 font-medium text-blue-100">...touching lives</p>
             <p class="text-xl mb-8 max-w-4xl mx-auto leading-relaxed text-blue-50">
-                An African-based social impact organization committed to transforming lives in rural communities 
-                through comprehensive medical and educational support. We bridge the gap between opportunity and need, 
-                empowering communities across third world nations.
+                Join our transformative cohorts and become part of a community that's changing lives across Africa. 
+                We provide comprehensive training in technology, digital skills, and entrepreneurship to empower 
+                rural communities and create sustainable livelihoods.
             </p>
         <?php if(!$auth->isLoggedIn()): ?>
             <div class="space-x-4">
                 <a href="register.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
-                    Join Our Mission
+                    Join Current Cohort
                 </a>
                 <a href="showcase.php" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all transform hover:scale-105">
-                    Success Stories
+                    Find Job-Ready Graduates
                 </a>
             </div>
         <?php else: ?>
@@ -40,6 +55,122 @@
         </div>
     </div>
 </div>
+
+<!-- Active Cohorts Section -->
+<div class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Join Our Active Cohorts</h2>
+            <p class="text-xl text-gray-600 mb-2">Transform your life through our comprehensive training programs</p>
+            <p class="text-lg text-primary font-semibold">Applications are now open - Limited spaces available!</p>
+        </div>
+        
+        <?php if(!empty($active_cohorts)): ?>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <?php foreach($active_cohorts as $cohort): ?>
+                    <div class="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg p-6 border-2 border-transparent hover:border-primary transition-all transform hover:-translate-y-2">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 bg-secondary text-white rounded-full text-sm font-medium">
+                                <?php echo ucfirst($cohort['status']); ?>
+                            </span>
+                            <span class="text-sm text-gray-500"><?php echo $cohort['duration_months']; ?> months</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3"><?php echo htmlspecialchars($cohort['name']); ?></h3>
+                        <p class="text-gray-600 mb-4"><?php echo htmlspecialchars($cohort['description']); ?></p>
+                        <div class="flex items-center text-sm text-gray-500 mb-6">
+                            <i class="fas fa-calendar mr-2 text-primary"></i>
+                            <span>Starts: <?php echo date('M j, Y', strtotime($cohort['start_date'])); ?></span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">
+                                <i class="fas fa-users mr-1"></i>
+                                Max <?php echo $cohort['max_students']; ?> students
+                            </span>
+                            <?php if($auth->isLoggedIn()): ?>
+                                <a href="apply.php?cohort_id=<?php echo $cohort['id']; ?>" 
+                                   class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium">
+                                    Apply Now
+                                </a>
+                            <?php else: ?>
+                                <a href="register.php" 
+                                   class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium">
+                                    Join to Apply
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+        
+        <div class="text-center">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-4">Ready to Transform Your Future?</h3>
+                <p class="text-lg mb-6">Join thousands of graduates who have found meaningful careers through our programs</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <?php if(!$auth->isLoggedIn()): ?>
+                        <a href="register.php" class="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">
+                            Register & Apply Today
+                        </a>
+                    <?php else: ?>
+                        <a href="dashboard.php" class="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">
+                            View Available Cohorts
+                        </a>
+                    <?php endif; ?>
+                    <a href="showcase.php" class="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-primary transition">
+                        Browse Job-Ready Graduates
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Student Testimonials -->
+<?php if(!empty($featured_testimonials)): ?>
+<div class="bg-gradient-to-r from-gray-50 to-blue-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Success Stories</h2>
+            <p class="text-xl text-gray-600">Hear from our graduates who transformed their lives</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <?php foreach($featured_testimonials as $testimonial): ?>
+                <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold">
+                            <?php echo strtoupper(substr($testimonial['first_name'], 0, 1) . substr($testimonial['last_name'], 0, 1)); ?>
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="font-semibold text-gray-900">
+                                <?php echo htmlspecialchars($testimonial['first_name'] . ' ' . $testimonial['last_name']); ?>
+                            </h4>
+                            <p class="text-sm text-gray-600"><?php echo htmlspecialchars($testimonial['cohort_name']); ?></p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex mb-4">
+                        <?php for($i = 1; $i <= 5; $i++): ?>
+                            <i class="fas fa-star <?php echo $i <= $testimonial['rating'] ? 'text-yellow-400' : 'text-gray-300'; ?>"></i>
+                        <?php endfor; ?>
+                    </div>
+                    
+                    <p class="text-gray-700 italic">
+                        "<?php echo htmlspecialchars(substr($testimonial['content'], 0, 150)) . (strlen($testimonial['content']) > 150 ? '...' : ''); ?>"
+                    </p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="showcase.php" class="bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition">
+                View All Success Stories
+            </a>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
 
 <!-- Mission Statement -->
 <div class="bg-white py-16">
@@ -235,17 +366,23 @@
 <!-- Call to Action -->
 <div class="bg-gradient-to-r from-primary via-secondary to-emerald-600 py-16">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl font-bold text-white mb-6">Join Our Mission</h2>
+        <h2 class="text-4xl font-bold text-white mb-6">Start Your Journey Today</h2>
         <p class="text-xl text-blue-100 mb-8">
-            Together, we can transform lives and build stronger, healthier communities across Africa. 
-            Your support makes a real difference.
+            Join our next cohort and become part of a community that's transforming lives across Africa. 
+            Our graduates are job-ready and making real impact in their communities.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="register.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
-                Become a Partner
-            </a>
+            <?php if(!$auth->isLoggedIn()): ?>
+                <a href="register.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                    Apply for Next Cohort
+                </a>
+            <?php else: ?>
+                <a href="dashboard.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                    View Available Cohorts
+                </a>
+            <?php endif; ?>
             <a href="showcase.php" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all transform hover:scale-105">
-                See Our Impact
+                Hire Our Graduates
             </a>
         </div>
     </div>
