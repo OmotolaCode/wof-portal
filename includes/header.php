@@ -17,9 +17,11 @@ $current_user = $auth->getCurrentUser();
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1e40af',
-                        secondary: '#059669',
-                        accent: '#f59e0b'
+                        primary: '#2563eb',
+                        secondary: '#16a34a',
+                        accent: '#dc2626',
+                        coral: '#ef4444',
+                        emerald: '#10b981'
                     }
                 }
             }
@@ -32,9 +34,7 @@ $current_user = $auth->getCurrentUser();
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="index.php" class="flex items-center space-x-2">
-                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                            <i class="fas fa-graduation-cap text-white text-sm"></i>
-                        </div>
+                        <img src="images/wof_logo.png" alt="Whoba Ogo Foundation" class="h-10 w-auto">
                         <span class="text-xl font-bold text-gray-900"><?php echo APP_NAME; ?></span>
                     </a>
                 </div>

@@ -6,7 +6,7 @@ define('DB_PASS', '');
 define('DB_NAME', 'wof_training_portal');
 
 // Application configuration
-define('APP_NAME', 'WOF Training Institute');
+define('APP_NAME', 'Whoba Ogo Foundation');
 define('APP_URL', 'http://localhost/wof-portal');
 define('UPLOAD_PATH', 'uploads/');
 
