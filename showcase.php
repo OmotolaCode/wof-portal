@@ -88,6 +88,10 @@ sort($all_skills);
                     <i class="fas fa-search mr-2"></i>Search
                 </button>
             </form>
+            <p class="text-blue-100 mt-4 text-center">
+                <i class="fas fa-briefcase mr-2"></i>
+                Find job-ready graduates trained by Whoba Ogo Foundation - Ready to hire today!
+            </p>
         </div>
     </div>
 </div>

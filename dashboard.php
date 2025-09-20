@@ -196,6 +196,10 @@ $graduate_profile = $db->single();
                         <p class="text-gray-600 mb-4">Create your professional profile to showcase your skills to employers.</p>
                         <a href="profile.php" class="block w-full bg-secondary text-white text-center py-2 rounded-lg hover:bg-green-700 transition">
                             Create Profile
+                            <br>
+                            <a href="testimonial.php" class="text-secondary hover:underline text-sm">
+                                Share Experience <i class="fas fa-star ml-1"></i>
+                            </a>
                         </a>
                     <?php endif; ?>
                 </div>
@@ -214,6 +218,11 @@ $graduate_profile = $db->single();
                     <a href="contact.php" class="block text-primary hover:underline">
                         <i class="fas fa-envelope mr-2"></i>Contact Support
                     </a>
+                    <?php if($_SESSION['user_status'] === 'graduated' || !empty($enrollments)): ?>
+                        <a href="testimonial.php" class="block text-primary hover:underline">
+                            <i class="fas fa-star mr-2"></i>Share Your Experience
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
