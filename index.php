@@ -1,4 +1,5 @@
-
+<?php include 'includes/header.php'; ?>
+<?php
 // Get featured testimonials
 $db = new Database();
 $db->query('SELECT t.*, u.first_name, u.last_name, c.name as cohort_name 
@@ -13,7 +14,7 @@ $featured_testimonials = $db->resultSet();
 // Get active cohorts for enrollment
 $db->query('SELECT * FROM cohorts WHERE status IN ("upcoming", "active") ORDER BY start_date ASC LIMIT 3');
 $active_cohorts = $db->resultSet();
-<?php include 'includes/header.php'; ?>
+?>
 
 <!-- Hero Section -->
 <div class="relative bg-gradient-to-br from-primary via-secondary to-emerald-600 text-white overflow-hidden">

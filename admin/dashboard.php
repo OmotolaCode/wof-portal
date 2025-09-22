@@ -1,6 +1,6 @@
 <?php 
 require_once '../classes/Database.php';
-include '../includes/header.php';
+include 'includes/header.php';
 
 $auth->requireAdmin();
 

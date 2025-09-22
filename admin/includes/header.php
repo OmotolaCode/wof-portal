@@ -1,7 +1,7 @@
 <?php
 ob_start();
-require_once 'classes/config.php';
-require_once 'classes/Auth.php';
+require_once '../classes/config.php';
+require_once '../classes/Auth.php';
 $auth = new Auth();
 $current_user = $auth->getCurrentUser();
 ?>

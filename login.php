@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 include 'includes/header.php';
 
 if($auth->isLoggedIn()) {
@@ -68,5 +69,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </div>
-
+<?php
+ob_end_flush();
+?>
 <?php include 'includes/footer.php'; ?>
