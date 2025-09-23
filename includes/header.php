@@ -2,6 +2,7 @@
 ob_start();
 require_once 'classes/config.php';
 require_once 'classes/Auth.php';
+require_once 'includes/cookies.php';
 $auth = new Auth();
 $current_user = $auth->getCurrentUser();
 ?>
@@ -13,6 +14,38 @@ $current_user = $auth->getCurrentUser();
     <title><?php echo APP_NAME; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Cookie Consent Styles -->
+    <style>
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .graduate-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.3s ease;
+        }
+        .graduate-card:hover {
+            transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+        }
+        .job-ready-badge {
+            background: linear-gradient(45deg, #00c851, #007e33);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -73,6 +106,9 @@ $current_user = $auth->getCurrentUser();
                         </div>
                     <?php else: ?>
                         <a href="showcase.php" class="text-gray-700 hover:text-primary">Graduate Showcase</a>
+                        <a href="showcase.php" class="text-gray-700 hover:text-primary flex items-center">
+                            <i class="fas fa-graduation-cap mr-2 text-primary"></i>Graduate Showcase
+                        </a>
                         <a href="login.php" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Login</a>
                         <a href="register.php" class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Register</a>
                     <?php endif; ?>
@@ -80,5 +116,35 @@ $current_user = $auth->getCurrentUser();
             </div>
         </div>
     </nav>
+    
+    <!-- Cookie Consent Banner -->
+    <?php if(showCookieBanner()): ?>
+    <div class="cookie-banner">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="flex-1 mb-4 md:mb-0">
+                <h4 class="font-semibold mb-2">🍪 We Value Your Privacy</h4>
+                <p class="text-sm text-gray-300">
+                    We use cookies to enhance your experience, analyze site traffic, and provide personalized content. 
+                    By continuing to use our site, you consent to our use of cookies in accordance with our 
+                    <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a>.
+                </p>
+            </div>
+            <div class="flex space-x-3">
+                <form method="POST" class="inline">
+                    <input type="hidden" name="cookie_action" value="reject">
+                    <button type="submit" class="px-4 py-2 text-gray-300 hover:text-white border border-gray-600 rounded-lg transition">
+                        Reject All
+                    </button>
+                </form>
+                <form method="POST" class="inline">
+                    <input type="hidden" name="cookie_action" value="accept">
+                    <button type="submit" class="px-6 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition">
+                        Accept All
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 </body>
 </html>
