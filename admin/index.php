@@ -1,5 +1,5 @@
 <?php 
-require_once '../config.php';
+require_once '../classes/config.php';
 require_once '../classes/Auth.php';
 
 $auth = new Auth();

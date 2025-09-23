@@ -35,7 +35,7 @@ $current_user = $auth->getCurrentUser();
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="index.php" class="flex items-center space-x-2">
-                        <img src="images/wof_logo.png" alt="Whoba Ogo Foundation" class="h-10 w-auto">
+                        <img src="../../images/wof_logo.png" alt="Whoba Ogo Foundation" class="h-10 w-auto">
                         <span class="text-xl font-bold text-gray-900"><?php echo APP_NAME; ?></span>
                     </a>
                 </div>
