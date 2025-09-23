@@ -43,6 +43,11 @@
             </div>
             <div class="border-t border-gray-800 mt-8 pt-4 text-center text-gray-400">
                 <p>&copy; <?php echo date('Y'); ?> <?php echo APP_NAME; ?>. All rights reserved. | Touching lives across Africa</p>
+                <p class="text-xs mt-2">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a> | 
+                    <a href="#" class="hover:text-white transition">Cookie Policy</a> | 
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </p>
             </div>
         </div>
     </footer>
