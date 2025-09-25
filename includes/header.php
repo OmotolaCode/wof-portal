@@ -65,11 +65,11 @@ $current_user = $auth->getCurrentUser();
 <body class="bg-gray-50 min-h-screen">
     <nav class="bg-white shadow-lg border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-25">
                 <div class="flex items-center">
                     <a href="index.php" class="flex items-center space-x-2">
-                        <img src="images/wof_logo.png" alt="Whoba Ogo Foundation" class="h-10 w-auto">
-                        <span class="text-xl font-bold text-gray-900"><?php echo APP_NAME; ?></span>
+                        <img src="images/wof_logo.png" alt="Whoba Ogo Foundation" class="h-20 w-auto">
+                        <!-- <span class="text-xl font-bold text-gray-900"><?php echo APP_NAME; ?></span> -->
                     </a>
                 </div>
                 
@@ -105,7 +105,6 @@ $current_user = $auth->getCurrentUser();
                             </div>
                         </div>
                     <?php else: ?>
-                        <a href="showcase.php" class="text-gray-700 hover:text-primary">Graduate Showcase</a>
                         <a href="showcase.php" class="text-gray-700 hover:text-primary flex items-center">
                             <i class="fas fa-graduation-cap mr-2 text-primary"></i>Graduate Showcase
                         </a>

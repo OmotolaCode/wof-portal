@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="max-w-md w-full space-y-8">
         <div class="text-center">
             <h2 class="text-3xl font-bold text-gray-900">Create Your Account</h2>
-            <p class="mt-2 text-gray-600">Join WOF Training Institute and start your journey</p>
+            <p class="mt-2 text-black-800">Join WOF Training Institute, start your journey and get FREE Lifetime Access</p>
         </div>
         
         <?php if($message): ?>
