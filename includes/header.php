@@ -43,6 +43,15 @@ $current_user = $auth->getCurrentUser();
             0%, 100% { opacity: 1; }
             50% { opacity: 0.8; }
         }
+        .learning-environment-bg {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(22, 163, 74, 0.1) 100%);
+        }
+        .slanted-image {
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        }
+        .slanted-image-reverse {
+            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+        }
     </style>
     
     <script>
