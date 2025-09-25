@@ -16,6 +16,87 @@ $db->query('SELECT * FROM cohorts WHERE status IN ("upcoming", "active") ORDER B
 $active_cohorts = $db->resultSet();
 ?>
 
+<!-- Learning Environment Showcase Section -->
+<div class="relative bg-white py-8 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Learning Environment</h2>
+            <p class="text-lg text-gray-600">State-of-the-art facilities designed for hands-on learning</p>
+        </div>
+        
+        <!-- Slanted Image Design -->
+        <div class="relative h-96 overflow-hidden rounded-2xl shadow-2xl">
+            <div class="absolute inset-0 flex">
+                <!-- First Image - Slanted Left -->
+                <div class="w-1/2 h-full relative overflow-hidden">
+                    <div class="absolute inset-0 transform -skew-x-6 origin-top-left scale-110">
+                        <img src="images/classroom1.jpg" alt="Students Learning" 
+                             class="w-full h-full object-cover transform skew-x-6 scale-90">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-xl font-bold mb-2">Interactive Learning</h3>
+                        <p class="text-sm opacity-90">Hands-on computer training with expert instructors</p>
+                    </div>
+                </div>
+                
+                <!-- Second Image - Slanted Right -->
+                <div class="w-1/2 h-full relative overflow-hidden">
+                    <div class="absolute inset-0 transform skew-x-6 origin-top-right scale-110">
+                        <img src="images/classroom2.jpg" alt="Collaborative Learning" 
+                             class="w-full h-full object-cover transform -skew-x-6 scale-90">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-l from-secondary/20 to-transparent"></div>
+                    <div class="absolute bottom-6 right-6 text-white text-right">
+                        <h3 class="text-xl font-bold mb-2">Collaborative Environment</h3>
+                        <p class="text-sm opacity-90">Modern facilities fostering teamwork and innovation</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center Overlay -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="bg-white/95 backdrop-blur-sm rounded-full p-6 shadow-xl border-4 border-primary/20">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900">Excellence in Education</h4>
+                        <p class="text-sm text-gray-600">Transforming Lives Through Technology</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Learning Features -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div class="text-center group">
+                <div class="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-laptop-code text-white text-xl"></i>
+                </div>
+                <h4 class="text-lg font-semibold mb-2 text-gray-900">Modern Technology</h4>
+                <p class="text-gray-600">Latest computers and software for practical learning</p>
+            </div>
+            
+            <div class="text-center group">
+                <div class="w-16 h-16 bg-gradient-to-br from-secondary to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-chalkboard-teacher text-white text-xl"></i>
+                </div>
+                <h4 class="text-lg font-semibold mb-2 text-gray-900">Expert Instructors</h4>
+                <p class="text-gray-600">Experienced professionals guiding your learning journey</p>
+            </div>
+            
+            <div class="text-center group">
+                <div class="w-16 h-16 bg-gradient-to-br from-coral to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-users text-white text-xl"></i>
+                </div>
+                <h4 class="text-lg font-semibold mb-2 text-gray-900">Collaborative Learning</h4>
+                <p class="text-gray-600">Interactive environment promoting teamwork and growth</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Hero Section -->
 <div class="relative bg-gradient-to-br from-primary via-secondary to-emerald-600 text-white overflow-hidden">
     <div class="absolute inset-0 bg-black opacity-10"></div>

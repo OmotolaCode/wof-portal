@@ -62,8 +62,14 @@ sort($all_skills);
 
 <!-- Hero Section with Professional Design -->
 <div class="relative bg-gradient-to-br from-primary via-blue-700 to-secondary text-white py-20 overflow-hidden">
-    <!-- Background Pattern -->
+    <!-- Graduate Success Image Background -->
     <div class="absolute inset-0 opacity-10">
+        <img src="images/graduate_professional.jpg" alt="Professional Graduate" 
+             class="w-full h-full object-cover">
+    </div>
+    
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
         <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full"></div>
         <div class="absolute bottom-20 right-20 w-24 h-24 bg-coral rounded-full"></div>
         <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-accent rounded-full"></div>
@@ -72,11 +78,19 @@ sort($all_skills);
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="relative z-10">
-            <div class="flex justify-center mb-6">
-                <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                    <i class="fas fa-graduation-cap text-4xl text-white"></i>
+            <!-- Professional Graduate Highlight -->
+            <div class="flex justify-center mb-8">
+                <div class="relative">
+                    <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
+                        <img src="images/graduate_professional.jpg" alt="Professional Graduate" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-2 -right-2 w-12 h-12 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                        <i class="fas fa-check text-white text-lg"></i>
+                    </div>
                 </div>
             </div>
+            
             <h1 class="text-5xl font-bold mb-6 leading-tight">
                 <span class="text-white">Job-Ready</span>
                 <span class="text-coral block">Graduates</span>
@@ -136,15 +150,36 @@ sort($all_skills);
 </div>
 
 <!-- Graduates Section -->
-<div class="bg-gray-50 py-16">
+<div class="bg-gray-50 py-16 relative">
+    <!-- Success Story Background -->
+    <div class="absolute top-0 right-0 w-1/3 h-64 opacity-5">
+        <img src="images/graduate_professional.jpg" alt="Success Story" 
+             class="w-full h-full object-cover rounded-l-3xl">
+    </div>
+    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 relative z-10">
             <h2 class="text-4xl font-bold text-gray-900 mb-4">Meet Our Certified Graduates</h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                 Each graduate has completed our comprehensive training program and passed rigorous assessments. 
                 They are ready to contribute immediately to your organization's success.
             </p>
+            
+            <!-- Graduate Achievement Showcase -->
+            <div class="mt-8 bg-white rounded-2xl shadow-lg p-6 max-w-2xl mx-auto border-l-4 border-emerald-500">
+                <div class="flex items-center justify-center space-x-6">
+                    <div class="w-20 h-20 rounded-full overflow-hidden border-3 border-emerald-200">
+                        <img src="images/graduate_professional.jpg" alt="Featured Graduate" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-left">
+                        <h4 class="text-lg font-bold text-gray-900">Professional Excellence</h4>
+                        <p class="text-emerald-600 font-semibold">Certified • Skilled • Ready to Excel</p>
+                        <p class="text-sm text-gray-600 mt-1">Our graduates represent the pinnacle of professional readiness</p>
+                    </div>
+                </div>
+            </div>
         </div>
         
     <?php if(empty($graduates)): ?>
