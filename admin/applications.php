@@ -54,7 +54,8 @@ if(isset($_POST['action']) && isset($_POST['application_id'])) {
 }
 
 // Get all applications with user and cohort info
-$db->query('SELECT a.*, u.first_name, u.last_name, u.email, u.phone, c.name as cohort_name, c.start_date 
+$db->query('SELECT a.*, u.first_name, u.last_name, u.email, u.phone, c.name as cohort_name, c.start_date,
+           a.surname, a.first_name as app_first_name, a.phone_number, a.email_address, a.course_choice, a.preferred_session
            FROM applications a 
            JOIN users u ON a.user_id = u.id 
            JOIN cohorts c ON a.cohort_id = c.id 
@@ -103,17 +104,23 @@ $applications = $db->resultSet();
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div>
                                     <div class="text-sm font-medium text-gray-900">
-                                        <?php echo htmlspecialchars($app['first_name'] . ' ' . $app['last_name']); ?>
+                                        <?php echo htmlspecialchars(($app['surname'] ?: $app['last_name']) . ', ' . ($app['app_first_name'] ?: $app['first_name'])); ?>
                                     </div>
-                                    <div class="text-sm text-gray-500"><?php echo htmlspecialchars($app['email']); ?></div>
-                                    <?php if($app['phone']): ?>
-                                        <div class="text-sm text-gray-500"><?php echo htmlspecialchars($app['phone']); ?></div>
+                                    <div class="text-sm text-gray-500"><?php echo htmlspecialchars($app['email_address'] ?: $app['email']); ?></div>
+                                    <?php if($app['phone_number'] || $app['phone']): ?>
+                                        <div class="text-sm text-gray-500"><?php echo htmlspecialchars($app['phone_number'] ?: $app['phone']); ?></div>
+                                    <?php endif; ?>
+                                    <?php if($app['course_choice']): ?>
+                                        <div class="text-sm text-blue-600"><?php echo ucwords(str_replace('_', ' ', $app['course_choice'])); ?></div>
                                     <?php endif; ?>
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900"><?php echo htmlspecialchars($app['cohort_name']); ?></div>
                                 <div class="text-sm text-gray-500">Starts: <?php echo date('M j, Y', strtotime($app['start_date'])); ?></div>
+                                <?php if($app['preferred_session']): ?>
+                                    <div class="text-sm text-gray-500">Prefers: <?php echo ucwords(str_replace('_', ' ', $app['preferred_session'])); ?></div>
+                                <?php endif; ?>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 <?php echo date('M j, Y', strtotime($app['applied_at'])); ?>
@@ -133,7 +140,7 @@ $applications = $db->resultSet();
                                     <button onclick="openModal(<?php echo $app['id']; ?>, 'reject')" 
                                             class="text-red-600 hover:text-red-900">Reject</button>
                                 <?php else: ?>
-                                    <a href="application_detail.php?id=<?php echo $app['id']; ?>" 
+                                    <a href="application_details.php?id=<?php echo $app['id']; ?>" 
                                        class="text-primary hover:text-blue-900">View Details</a>
                                 <?php endif; ?>
                             </td>
