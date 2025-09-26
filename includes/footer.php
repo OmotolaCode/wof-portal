@@ -12,17 +12,16 @@
                 <div>
                     <h4 class="text-md font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="index.php" class="hover:text-white transition">Home</a></li>
+                        <li><a href="https://whobaogofoundation.org" class="hover:text-white transition"> Back to Website </a></li>
                         <li><a href="showcase.php" class="hover:text-white transition">Success Stories</a></li>
                         <li><a href="#" class="hover:text-white transition">Our Programs</a></li>
-                        <li><a href="contact.php" class="hover:text-white transition">Contact Us</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-md font-semibold mb-4">Contact Info</h4>
                     <div class="text-gray-400 space-y-2">
-                        <p><i class="fas fa-envelope mr-2 text-coral"></i>info@whobaogo.org</p>
-                        <p><i class="fas fa-phone mr-2 text-coral"></i>+234 (0) 123-456-7890</p>
+                        <p><i class="fas fa-envelope mr-2 text-coral"></i>info@whobaogofoundation.org</p>
+                        <p><i class="fas fa-phone mr-2 text-coral"></i>(+234) 818 045 2165</p>
                         <p><i class="fas fa-map-marker-alt mr-2 text-coral"></i>Lagos, Nigeria</p>
                         <div class="flex space-x-4 mt-4">
                             <a href="#" class="text-gray-400 hover:text-white transition">

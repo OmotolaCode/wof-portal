@@ -20,7 +20,7 @@ $active_cohorts = $db->resultSet();
 <div class="relative bg-white py-8 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Learning Environment</h2>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4"> Our Learning Environment </h2>
             <p class="text-lg text-gray-600">State-of-the-art facilities designed for hands-on learning</p>
         </div>
         
@@ -57,13 +57,15 @@ $active_cohorts = $db->resultSet();
             <!-- Center Overlay -->
             <div class="absolute inset-0 flex items-center justify-center">
                 <div class="bg-white/95 backdrop-blur-sm rounded-full p-6 shadow-xl border-4 border-primary/20">
+                    <a href="register.php">
                     <div class="text-center">
                         <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-3">
                             <i class="fas fa-graduation-cap text-white text-2xl"></i>
                         </div>
-                        <h4 class="text-lg font-bold text-gray-900">Excellence in Education</h4>
-                        <p class="text-sm text-gray-600">Transforming Lives Through Technology</p>
+                        <h4 class="text-lg font-bold text-gray-900"> Get FREE Lifetime Access </h4>
+                        <p class="text-sm text-gray-600"> Join us to apply for Current Cohort  </p>
                     </div>
+                    </a>
                 </div>
             </div>
         </div>

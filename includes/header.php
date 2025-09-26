@@ -105,7 +105,7 @@ $current_user = $auth->getCurrentUser();
                                     </a>
                                 <?php endif; ?>
                                 <a href="showcase.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    <i class="fas fa-star mr-2"></i>Graduate Showcase
+                                    <i class="fas fa-star mr-2"></i>Hire Job Ready Graduate
                                 </a>
                                 <hr class="my-1">
                                 <a href="logout.php" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">
@@ -115,7 +115,7 @@ $current_user = $auth->getCurrentUser();
                         </div>
                     <?php else: ?>
                         <a href="showcase.php" class="text-gray-700 hover:text-primary flex items-center">
-                            <i class="fas fa-graduation-cap mr-2 text-primary"></i>Graduate Showcase
+                            <i class="fas fa-graduation-cap mr-2 text-primary"></i>Hire Job Ready Graduate. 
                         </a>
                         <a href="login.php" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Login</a>
                         <a href="register.php" class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Register</a>
