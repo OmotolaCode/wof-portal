@@ -16,18 +16,17 @@ $db->query('SELECT * FROM cohorts WHERE status IN ("upcoming", "active") ORDER B
 $active_cohorts = $db->resultSet();
 ?>
 
-<!-- Learning Environment Showcase Section -->
-<!-- <div class="relative bg-white py-8 overflow-hidden">
+<!-- 
+Learning Environment Showcase Section - Commented out for future use
+<div class="relative bg-white py-8 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-8">
             <h2 class="text-3xl font-bold text-gray-900 mb-4"> Our Learning Environment </h2>
             <p class="text-lg text-gray-600">State-of-the-art facilities designed for hands-on learning</p>
         </div>
         
-        <!-- Slanted Image Design --
         <div class="relative h-96 overflow-hidden rounded-2xl shadow-2xl">
             <div class="absolute inset-0 flex">
-                <!-- First Image - Slanted Left --
                 <div class="w-1/2 h-full relative overflow-hidden">
                     <div class="absolute inset-0 transform -skew-x-6 origin-top-left scale-110">
                         <img src="images/classroom1.jpg" alt="Students Learning" 
@@ -40,7 +39,6 @@ $active_cohorts = $db->resultSet();
                     </div>
                 </div>
                 
-                <!-- Second Image - Slanted Right --
                 <div class="w-1/2 h-full relative overflow-hidden">
                     <div class="absolute inset-0 transform skew-x-6 origin-top-right scale-110">
                         <img src="images/classroom2.jpg" alt="Collaborative Learning" 
@@ -54,7 +52,6 @@ $active_cohorts = $db->resultSet();
                 </div>
             </div>
             
-            <!-- Center Overlay --
             <div class="absolute inset-0 flex items-center justify-center">
                 <div class="bg-white/95 backdrop-blur-sm rounded-full p-6 shadow-xl border-4 border-primary/20">
                     <a href="register.php">
@@ -70,7 +67,6 @@ $active_cohorts = $db->resultSet();
             </div>
         </div>
         
-        <!-- Learning Features --
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             <div class="text-center group">
                 <div class="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -97,17 +93,26 @@ $active_cohorts = $db->resultSet();
             </div>
         </div>
     </div>
-</div> -->
+</div>
+-->
 
 <!-- Hero Section -->
-<div class="relative bg-gradient-to-br from-primary via-secondary to-emerald-600 text-white overflow-hidden">
-    <div class="absolute inset-0 bg-black opacity-10"></div>
+<div class="relative bg-gradient-to-br from-primary via-secondary to-emerald-600 text-white overflow-hidden min-h-screen">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <img src="images/student-reading-wof.jpg" alt="WOF Students Learning" 
+             class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/80 via-secondary/70 to-emerald-600/80"></div>
+    </div>
+    
+    <!-- Decorative Elements -->
     <div class="absolute inset-0">
         <div class="absolute top-10 left-10 w-32 h-32 bg-white opacity-5 rounded-full"></div>
         <div class="absolute bottom-20 right-20 w-24 h-24 bg-coral opacity-10 rounded-full"></div>
         <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-accent opacity-5 rounded-full"></div>
     </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex items-center min-h-screen">
         <div class="relative z-10 py-24">
             <div class="flex justify-center mb-8">
                 <img src="images/wof_logo.png" alt="Whoba Ogo Foundation" class="h-24 w-auto">
@@ -137,6 +142,33 @@ $active_cohorts = $db->resultSet();
                 Access Dashboard
             </a>
         <?php endif; ?>
+        </div>
+        
+        <!-- Learning Features -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 relative z-10">
+            <div class="text-center group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all">
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-laptop-code text-white text-xl"></i>
+                </div>
+                <h4 class="text-lg font-semibold mb-2 text-white">Modern Technology</h4>
+                <p class="text-blue-100">Latest computers and software for practical learning</p>
+            </div>
+            
+            <div class="text-center group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all">
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-chalkboard-teacher text-white text-xl"></i>
+                </div>
+                <h4 class="text-lg font-semibold mb-2 text-white">Expert Instructors</h4>
+                <p class="text-blue-100">Experienced professionals guiding your learning journey</p>
+            </div>
+            
+            <div class="text-center group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all">
+                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-users text-white text-xl"></i>
+                </div>
+                <h4 class="text-lg font-semibold mb-2 text-white">Collaborative Learning</h4>
+                <p class="text-blue-100">Interactive environment promoting teamwork and growth</p>
+            </div>
         </div>
     </div>
 </div>

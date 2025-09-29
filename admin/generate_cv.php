@@ -44,6 +44,8 @@ $examinations = $db->resultSet();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - <?php echo htmlspecialchars($user['first_name'] . ' ' . $user['last_name']); ?></title>
+    <link rel="icon" type="image/png" href="../images/wof_logo.png">
+    <link rel="shortcut icon" type="image/png" href="../images/wof_logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
