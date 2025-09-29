@@ -17,17 +17,17 @@ $active_cohorts = $db->resultSet();
 ?>
 
 <!-- Learning Environment Showcase Section -->
-<div class="relative bg-white py-8 overflow-hidden">
+<!-- <div class="relative bg-white py-8 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-8">
             <h2 class="text-3xl font-bold text-gray-900 mb-4"> Our Learning Environment </h2>
             <p class="text-lg text-gray-600">State-of-the-art facilities designed for hands-on learning</p>
         </div>
         
-        <!-- Slanted Image Design -->
+        <!-- Slanted Image Design --
         <div class="relative h-96 overflow-hidden rounded-2xl shadow-2xl">
             <div class="absolute inset-0 flex">
-                <!-- First Image - Slanted Left -->
+                <!-- First Image - Slanted Left --
                 <div class="w-1/2 h-full relative overflow-hidden">
                     <div class="absolute inset-0 transform -skew-x-6 origin-top-left scale-110">
                         <img src="images/classroom1.jpg" alt="Students Learning" 
@@ -40,7 +40,7 @@ $active_cohorts = $db->resultSet();
                     </div>
                 </div>
                 
-                <!-- Second Image - Slanted Right -->
+                <!-- Second Image - Slanted Right --
                 <div class="w-1/2 h-full relative overflow-hidden">
                     <div class="absolute inset-0 transform skew-x-6 origin-top-right scale-110">
                         <img src="images/classroom2.jpg" alt="Collaborative Learning" 
@@ -54,7 +54,7 @@ $active_cohorts = $db->resultSet();
                 </div>
             </div>
             
-            <!-- Center Overlay -->
+            <!-- Center Overlay --
             <div class="absolute inset-0 flex items-center justify-center">
                 <div class="bg-white/95 backdrop-blur-sm rounded-full p-6 shadow-xl border-4 border-primary/20">
                     <a href="register.php">
@@ -63,14 +63,14 @@ $active_cohorts = $db->resultSet();
                             <i class="fas fa-graduation-cap text-white text-2xl"></i>
                         </div>
                         <h4 class="text-lg font-bold text-gray-900"> Get FREE Lifetime Access </h4>
-                        <p class="text-sm text-gray-600"> Join us to apply for Current Cohort  </p>
+                        <p class="text-sm text-gray-600"> Apply for the Current Cohort  </p>
                     </div>
                     </a>
                 </div>
             </div>
         </div>
         
-        <!-- Learning Features -->
+        <!-- Learning Features --
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             <div class="text-center group">
                 <div class="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -97,7 +97,7 @@ $active_cohorts = $db->resultSet();
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Hero Section -->
 <div class="relative bg-gradient-to-br from-primary via-secondary to-emerald-600 text-white overflow-hidden">
@@ -118,9 +118,10 @@ $active_cohorts = $db->resultSet();
             </h1>
             <p class="text-2xl mb-4 font-medium text-blue-100">...touching lives</p>
             <p class="text-xl mb-8 max-w-4xl mx-auto leading-relaxed text-blue-50">
-                Join our transformative cohorts and become part of a community that's changing lives across Africa. 
+                Join our transformative cohorts and get <b>FREE</b> Lifetime Access
+                <!-- Join our transformative cohorts and become part of a community that's changing lives across Africa. 
                 We provide comprehensive training in technology, digital skills, and entrepreneurship to empower 
-                rural communities and create sustainable livelihoods.
+                rural communities and create sustainable livelihoods. -->
             </p>
         <?php if(!$auth->isLoggedIn()): ?>
             <div class="space-x-4">
