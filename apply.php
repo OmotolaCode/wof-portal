@@ -3,11 +3,10 @@ require_once 'classes/Database.php';
 include 'includes/header.php';
 
 $auth->requireAuth();
-
-if($_SESSION['user_status'] !== 'approved') {
-    header('Location: dashboard.php');
-    exit();
-}
+// if($_SESSION['user_status'] !== 'approved') {
+//     header('Location: dashboard.php');
+//     exit();
+// }
 
 $db = new Database();
 $message = '';
@@ -419,10 +418,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !$existing_application) {
                 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
                     <h4 class="font-medium text-blue-900 mb-2">Application Requirements</h4>
                     <ul class="text-blue-700 text-sm space-y-1">
-                        <li><i class="fas fa-check mr-2"></i>Must be an approved user</li>
+                        <!-- <li><i class="fas fa-check mr-2"></i>Must be an approved user</li> -->
                         <li><i class="fas fa-check mr-2"></i>Complete all required fields accurately</li>
                         <li><i class="fas fa-check mr-2"></i>Demonstrate genuine interest and commitment</li>
-                        <li><i class="fas fa-check mr-2"></i>Applications are reviewed by our admin team</li>
+                        <li><i class="fas fa-check mr-2"></i>Applications are reviewed by our Board of Directors</li>
                         <li><i class="fas fa-check mr-2"></i>Successful applicants will be contacted for enrollment</li>
                     </ul>
                 </div>

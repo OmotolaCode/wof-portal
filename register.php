@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $result = $auth->register($email, $password, $first_name, $last_name, $phone);
         if($result['success']) {
-            $message = 'Registration successful! Please wait for admin approval before logging in.';
+            $message = 'Registration successful! Login to explore our available cohort, apply and get approved.';
         } else {
             $error = $result['message'];
         }

@@ -112,7 +112,7 @@ Learning Environment Showcase Section - Commented out for future use
         <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-accent opacity-5 rounded-full"></div>
     </div>
     
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex items-center min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex items-center justify-center min-h-screen">
         <div class="relative z-10 py-24">
             <div class="flex justify-center mb-8">
                 <img src="images/wof_logo.png" alt="Whoba Ogo Foundation" class="h-24 w-auto">
@@ -124,53 +124,25 @@ Learning Environment Showcase Section - Commented out for future use
             <p class="text-2xl mb-4 font-medium text-blue-100">...touching lives</p>
             <p class="text-xl mb-8 max-w-4xl mx-auto leading-relaxed text-blue-50">
                 Join our transformative cohorts and get <b>FREE</b> Lifetime Access
-                <!-- Join our transformative cohorts and become part of a community that's changing lives across Africa. 
-                We provide comprehensive training in technology, digital skills, and entrepreneurship to empower 
-                rural communities and create sustainable livelihoods. -->
             </p>
-        <?php if(!$auth->isLoggedIn()): ?>
-            <div class="space-x-4">
-                <a href="register.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
-                    Join Current Cohort
+
+            <?php if(!$auth->isLoggedIn()): ?>
+                <div class="space-x-4">
+                    <a href="register.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                        Join Current Cohort
+                    </a>
+                    <a href="showcase.php" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all transform hover:scale-105">
+                        Find Job-Ready Graduates
+                    </a>
+                </div>
+            <?php else: ?>
+                <a href="dashboard.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                    Access Dashboard
                 </a>
-                <a href="showcase.php" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all transform hover:scale-105">
-                    Find Job-Ready Graduates
-                </a>
-            </div>
-        <?php else: ?>
-            <a href="dashboard.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
-                Access Dashboard
-            </a>
-        <?php endif; ?>
-        </div>
-        
-        <!-- Learning Features -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 relative z-10">
-            <div class="text-center group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all">
-                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-laptop-code text-white text-xl"></i>
-                </div>
-                <h4 class="text-lg font-semibold mb-2 text-white">Modern Technology</h4>
-                <p class="text-blue-100">Latest computers and software for practical learning</p>
-            </div>
-            
-            <div class="text-center group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all">
-                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-chalkboard-teacher text-white text-xl"></i>
-                </div>
-                <h4 class="text-lg font-semibold mb-2 text-white">Expert Instructors</h4>
-                <p class="text-blue-100">Experienced professionals guiding your learning journey</p>
-            </div>
-            
-            <div class="text-center group bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 transition-all">
-                <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-users text-white text-xl"></i>
-                </div>
-                <h4 class="text-lg font-semibold mb-2 text-white">Collaborative Learning</h4>
-                <p class="text-blue-100">Interactive environment promoting teamwork and growth</p>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
+
 </div>
 
 <!-- Active Cohorts Section -->
@@ -290,7 +262,7 @@ Learning Environment Showcase Section - Commented out for future use
 <?php endif; ?>
 
 <!-- Mission Statement -->
-<div class="bg-white py-16">
+<!-- <div class="bg-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
@@ -340,9 +312,9 @@ Learning Environment Showcase Section - Commented out for future use
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+<!-- <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
         <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Impact Programs</h2>
         <p class="text-xl text-gray-600">Comprehensive programs designed to create lasting change in rural communities</p>
@@ -391,10 +363,10 @@ Learning Environment Showcase Section - Commented out for future use
             </ul>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Impact Statistics -->
-<div class="bg-gradient-to-r from-gray-50 to-blue-50 py-16">
+<!-- <div class="bg-gradient-to-r from-gray-50 to-blue-50 py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Impact</h2>
@@ -435,9 +407,9 @@ Learning Environment Showcase Section - Commented out for future use
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="bg-white py-16">
+<!-- <div class="bg-white py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Partner With Us?</h2>
@@ -478,7 +450,7 @@ Learning Environment Showcase Section - Commented out for future use
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- Call to Action -->
 <div class="bg-gradient-to-r from-primary via-secondary to-emerald-600 py-16">

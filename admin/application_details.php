@@ -1,6 +1,5 @@
 <?php 
-require_once '../classes/Database.php';
-include '../includes/header.php';
+include 'includes/header.php';
 
 $auth->requireAdmin();
 
@@ -45,7 +44,7 @@ function getQualificationText($value) {
         'postgraduate' => 'Post Graduate',
         'other' => 'Other'
     ];
-    return $qualifications[$value] ?? $value;
+    return isset($qualifications[$value]) ? $qualifications[$value] : $value;
 }
 
 // Helper function to get course text
@@ -62,7 +61,7 @@ function getCourseText($value) {
         'mobile_app_development' => 'Mobile App Development',
         'data_analytics' => 'Data Analytics'
     ];
-    return $courses[$value] ?? $value;
+    return isset($courses[$value]) ? $courses[$value] : $value;
 }
 
 // Helper function to get session text
@@ -72,7 +71,7 @@ function getSessionText($value) {
         'afternoon_230_430' => 'Afternoon (2:30pm - 4:30pm)',
         'weekends_8_1' => 'Weekends only (8am - 1pm)'
     ];
-    return $sessions[$value] ?? $value;
+    return isset($sessions[$value]) ? $sessions[$value] : $value;
 }
 ?>
 
@@ -212,7 +211,7 @@ function getSessionText($value) {
                             'quite_tricky' => 'I find it quite tricky and have to think about it a lot',
                             'hard_to_string' => 'I find it hard to string sentences together'
                         ];
-                        echo $speaking_levels[$application['english_speaking_level']] ?? 'N/A';
+                        echo isset($speaking_levels[$application['english_speaking_level']]) ? $speaking_levels[$application['english_speaking_level']] : 'N/A';
                         ?>
                     </p>
                 </div>
@@ -227,7 +226,7 @@ function getSessionText($value) {
                             'slow_and_clear' => 'I can understand when people speak slowly and clearly',
                             'lost_easily' => 'I get lost easily and usually only understand a few words'
                         ];
-                        echo $understanding_levels[$application['english_understanding_level']] ?? 'N/A';
+                        echo isset($understanding_levels[$application['english_understanding_level']]) ? $understanding_levels[$application['english_understanding_level']] : 'N/A';
                         ?>
                     </p>
                 </div>
@@ -266,7 +265,7 @@ function getSessionText($value) {
                             'never_operated' => 'No, I have never operated a computer system',
                             'other' => 'Other'
                         ];
-                        echo $computer_levels[$application['computer_understanding']] ?? 'N/A';
+                        echo isset($computer_levels[$application['computer_understanding']]) ? $computer_levels[$application['computer_understanding']] : 'N/A';
                         ?>
                     </p>
                     <?php if($application['computer_understanding_other']): ?>
@@ -295,7 +294,7 @@ function getSessionText($value) {
                             'wof_batch1_student' => 'Through a WOF batch 1 students',
                             'other' => 'Other'
                         ];
-                        echo $marketing_sources[$application['how_heard_about']] ?? 'N/A';
+                        echo isset($marketing_sources[$application['how_heard_about']]) ? $marketing_sources[$application['how_heard_about']] : 'N/A';
                         ?>
                     </p>
                     <?php if($application['how_heard_other']): ?>

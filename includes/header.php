@@ -2,7 +2,7 @@
 ob_start();
 require_once 'classes/config.php';
 require_once 'classes/Auth.php';
-require_once 'includes/cookies.php';
+require_once 'cookies.php';
 $auth = new Auth();
 $current_user = $auth->getCurrentUser();
 ?>
@@ -80,7 +80,7 @@ $current_user = $auth->getCurrentUser();
                 <div class="flex items-center">
                     <a href="index.php" class="flex items-center space-x-2">
                         <img src="images/wof_logo.png" alt="Whoba Ogo Foundation" class="h-20 w-auto">
-                        <!-- <span class="text-xl font-bold text-gray-900"><?php echo APP_NAME; ?></span> -->
+                        <!-- <span class="text-xl font-bold text-gray-900"><?php //echo APP_NAME; ?></span> -->
                     </a>
                 </div>
                 

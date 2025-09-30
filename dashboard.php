@@ -43,11 +43,11 @@ $graduate_profile = $db->single();
     <!-- Status Alert -->
     <?php if($_SESSION['user_status'] === 'pending'): ?>
         <div class="bg-yellow-50 border border-yellow-200 text-yellow-800 px-4 py-3 rounded-lg mb-6">
-            <i class="fas fa-clock mr-2"></i>Your account is pending approval. You can browse available cohorts but cannot apply until approved.
+            <i class="fas fa-clock mr-2"></i>Welcome! Your account status is currently set to Prospective Student. You can explore our available cohorts, apply to the one that suits you best, and we’ll notify you once your eligibility has been confirmed.
         </div>
     <?php elseif($_SESSION['user_status'] === 'graduated'): ?>
         <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg mb-6">
-            <i class="fas fa-graduation-cap mr-2"></i>Congratulations! You've graduated. You can now create your professional profile.
+            <i class="fas fa-graduation-cap mr-2"></i>Congratulations! On your graduation. You can now create your professional profile.
         </div>
     <?php endif; ?>
     
@@ -55,7 +55,7 @@ $graduate_profile = $db->single();
         <!-- Main Content -->
         <div class="lg:col-span-2 space-y-8">
             <!-- Available Cohorts -->
-            <?php if($_SESSION['user_status'] === 'approved'): ?>
+            <?php if($_SESSION['user_status'] === 'approved' || $_SESSION['user_status'] === 'pending'): ?>
                 <div class="bg-white rounded-lg shadow-lg p-6">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6">Available Cohorts</h2>
                     <div class="grid gap-4">

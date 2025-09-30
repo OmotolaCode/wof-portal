@@ -1,6 +1,5 @@
 <?php 
-require_once '../classes/Database.php';
-include '../includes/header.php';
+include 'includes/header.php';
 
 $auth->requireAdmin();
 
@@ -12,7 +11,7 @@ $error = '';
 if(isset($_POST['action']) && isset($_POST['application_id'])) {
     $application_id = $_POST['application_id'];
     $action = $_POST['action'];
-    $admin_notes = trim($_POST['admin_notes'] ?? '');
+    $admin_notes = trim(isset($_POST['admin_notes']) ? $_POST['admin_notes'] : '');
     
     if($action === 'approve') {
         // Start transaction
@@ -206,4 +205,4 @@ function closeModal() {
 }
 </script>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

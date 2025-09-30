@@ -34,6 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
         <div class="text-center">
+            <center><img src="images/wof_logo_png.png" alt="Whoba Ogo Foundation" class="h-10 w-auto"></center>
             <h2 class="text-3xl font-bold text-gray-900">Sign In</h2>
             <p class="mt-2 text-gray-600">Access your WOF Training Institute account</p>
         </div>
