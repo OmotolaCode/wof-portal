@@ -200,7 +200,7 @@ $cohorts = $db->resultSet();
                                         </select>
                                         <input type="hidden" name="update_status" value="1">
                                     </form>
-                                    <a href="cohort_detail.php?id=<?php echo $cohort['id']; ?>" 
+                                    <a href="cohort_details.php?id=<?php echo $cohort['id']; ?>"
                                        class="text-primary hover:text-blue-900">View Details</a>
                                 </div>
                             </td>

@@ -44,6 +44,20 @@ if($search || $skill_filter) {
     $graduates = $db->resultSet();
 }
 
+// Get all available course types from cohorts
+$course_types = [
+    'Desktop Publishing',
+    'Graphics Design & UI/UX',
+    'Web Design',
+    'Digital Marketing',
+    'Photography & Video Editing',
+    'Frontend Development',
+    'Backend Development',
+    'Fullstack Development',
+    'Mobile App Development',
+    'Data Analytics'
+];
+
 // Get all unique skills for filter dropdown
 $db->query('SELECT DISTINCT skills FROM graduate_profiles WHERE is_visible = 1 AND skills IS NOT NULL');
 $all_skills_raw = $db->resultSet();
@@ -57,6 +71,13 @@ foreach($all_skills_raw as $skill_row) {
         }
     }
 }
+
+foreach($course_types as $course) {
+    if(!in_array($course, $all_skills)) {
+        $all_skills[] = $course;
+    }
+}
+
 sort($all_skills);
 ?>
 
