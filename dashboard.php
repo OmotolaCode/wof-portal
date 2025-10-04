@@ -110,6 +110,24 @@ $graduate_profile = $db->single();
                                         <p class="text-sm text-gray-700"><?php echo htmlspecialchars($app['admin_notes']); ?></p>
                                     </div>
                                 <?php endif; ?>
+                                <?php if($app['status'] === 'approved'): ?>
+                                    <div class="mt-4 flex flex-wrap gap-2">
+                                        <a href="admission_letter.php?application_id=<?php echo $app['id']; ?>" target="_blank"
+                                           class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition text-sm">
+                                            <i class="fas fa-file-pdf mr-2"></i>View & Download Admission Letter
+                                        </a>
+                                        <a href="download_guarantor_form.php"
+                                           class="inline-flex items-center px-4 py-2 bg-secondary text-white rounded-lg hover:bg-green-700 transition text-sm">
+                                            <i class="fas fa-file-download mr-2"></i>Download Guarantor's Form
+                                        </a>
+                                    </div>
+                                    <div class="mt-2 p-3 bg-blue-50 border border-blue-200 rounded">
+                                        <p class="text-sm text-blue-800">
+                                            <i class="fas fa-info-circle mr-1"></i>
+                                            Please download your admission letter and complete the guarantor's form. Submit all required documents before your training commencement date.
+                                        </p>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
