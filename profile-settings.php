@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $allowed = ['jpg', 'jpeg', 'png', 'gif'];
 
         if(in_array($file_ext, $allowed) && $file['size'] < 5000000) {
-            $filename = 'profile_' . $_SESSION['user_id'] . '_' . time() . '.' . $file_ext';
+            $filename = 'profile_' . $_SESSION['user_id'] . '_' . time() . '.' . $file_ext;
             $filepath = $upload_dir . $filename;
 
             if(move_uploaded_file($file['tmp_name'], $filepath)) {
@@ -124,9 +124,9 @@ $user = $db->single();
             <h2 class="text-2xl font-bold text-gray-900 mb-6">Profile Picture</h2>
 
             <div class="flex items-center space-x-6">
-                <?php if($user['profile_image']): ?>
+                <?php if (isset($user['profile_image']) && $user['profile_image']): ?>
                     <img src="uploads/profiles/<?php echo htmlspecialchars($user['profile_image']); ?>"
-                         alt="Profile" class="w-32 h-32 rounded-full object-cover border-4 border-primary">
+                        alt="Profile" class="w-32 h-32 rounded-full object-cover border-4 border-primary">
                 <?php else: ?>
                     <div class="w-32 h-32 bg-primary rounded-full flex items-center justify-center text-white text-4xl font-bold">
                         <?php echo strtoupper(substr($user['first_name'], 0, 1) . substr($user['last_name'], 0, 1)); ?>
@@ -181,7 +181,7 @@ $user = $db->single();
                 <div>
                     <label class="block mb-2 text-sm font-semibold text-gray-700">Phone Number</label>
                     <input type="tel" name="phone"
-                           value="<?php echo htmlspecialchars($user['phone'] ?? ''); ?>"
+                           value="<?php echo htmlspecialchars(isset($user['phone']) ? $user['phone'] : ''); ?>"
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
                 </div>
 
@@ -227,7 +227,7 @@ $user = $db->single();
 
         <div class="bg-white rounded-lg shadow-lg p-6">
             <h2 class="text-2xl font-bold text-gray-900 mb-4">Account Information</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="text-sm font-semibold text-gray-600">Account Status</label>
                     <p class="text-gray-900">
@@ -252,7 +252,49 @@ $user = $db->single();
                     <label class="text-sm font-semibold text-gray-600">Last Updated</label>
                     <p class="text-gray-900"><?php echo date('M j, Y', strtotime($user['updated_at'])); ?></p>
                 </div>
+            </div> -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm font-semibold text-gray-600">Account Status</label>
+                    <p class="text-gray-900">
+                        <?php if (isset($user['status'])): ?>
+                            <span class="px-3 py-1 rounded-full text-sm font-medium
+                                <?php if ($user['status'] === 'approved'): ?>bg-green-100 text-green-800<?php endif; ?>
+                                <?php if ($user['status'] === 'pending'): ?>bg-yellow-100 text-yellow-800<?php endif; ?>
+                                <?php if ($user['status'] === 'active'): ?>bg-blue-100 text-blue-800<?php endif; ?>
+                                <?php if ($user['status'] === 'graduated'): ?>bg-purple-100 text-purple-800<?php endif; ?>">
+                                <?php echo ucfirst($user['status']); ?>
+                            </span>
+                        <?php else: ?>
+                            <span class="px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800">
+                                Unknown
+                            </span>
+                        <?php endif; ?>
+                    </p>
+                </div>
+
+                <div>
+                    <label class="text-sm font-semibold text-gray-600">Account Type</label>
+                    <p class="text-gray-900">
+                        <?php echo isset($user['user_type']) ? ucfirst($user['user_type']) : 'Unknown'; ?>
+                    </p>
+                </div>
+
+                <div>
+                    <label class="text-sm font-semibold text-gray-600">Member Since</label>
+                    <p class="text-gray-900">
+                        <?php echo isset($user['created_at']) ? date('M j, Y', strtotime($user['created_at'])) : 'N/A'; ?>
+                    </p>
+                </div>
+
+                <div>
+                    <label class="text-sm font-semibold text-gray-600">Last Updated</label>
+                    <p class="text-gray-900">
+                        <?php echo isset($user['updated_at']) ? date('M j, Y', strtotime($user['updated_at'])) : 'N/A'; ?>
+                    </p>
+                </div>
             </div>
+
         </div>
     </div>
 </div>

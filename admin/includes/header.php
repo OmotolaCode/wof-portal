@@ -40,7 +40,7 @@ $current_user = $auth->getCurrentUser();
                     </a>
                 </div>
                 <a href="dashboard.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                    <i class="fas fa-dashboard mr-2"></i>Dashboard
+                    <i class="fas fa-dashboard mr-2"></i>Dashboard 
                 </a>
                 
                 <div class="flex items-center space-x-4">

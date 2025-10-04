@@ -49,7 +49,7 @@ if(isset($_SESSION['user_id'])) {
     if($user) {
         $default_name = $user['first_name'] . ' ' . $user['last_name'];
         $default_email = $user['email'];
-        $default_phone = $user['phone'] ?? '';
+        $default_phone = isset($user['phone']) ?  $user['phone'] : '';
     }
 }
 ?>
@@ -86,7 +86,7 @@ if(isset($_SESSION['user_id'])) {
                         <div>
                             <label class="block mb-2 text-sm font-semibold text-gray-700">Your Name *</label>
                             <input type="text" name="name"
-                                   value="<?php echo htmlspecialchars($_POST['name'] ?? $default_name); ?>"
+                                   value="<?php echo htmlspecialchars(isset($_POST['name']) ? $_POST['name'] : $default_name); ?>"
                                    required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
                         </div>
@@ -94,7 +94,7 @@ if(isset($_SESSION['user_id'])) {
                         <div>
                             <label class="block mb-2 text-sm font-semibold text-gray-700">Email Address *</label>
                             <input type="email" name="email"
-                                   value="<?php echo htmlspecialchars($_POST['email'] ?? $default_email); ?>"
+                                   value="<?php echo htmlspecialchars(isset($_POST['email']) ? $_POST['email'] : $default_email); ?>"
                                    required
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
                         </div>
@@ -104,7 +104,7 @@ if(isset($_SESSION['user_id'])) {
                         <div>
                             <label class="block mb-2 text-sm font-semibold text-gray-700">Phone Number</label>
                             <input type="tel" name="phone"
-                                   value="<?php echo htmlspecialchars($_POST['phone'] ?? $default_phone); ?>"
+                                   value="<?php echo htmlspecialchars(isset($_POST['phone']) ? $_POST['phone'] : $default_phone); ?>"
                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
                         </div>
 
@@ -128,7 +128,7 @@ if(isset($_SESSION['user_id'])) {
                         <label class="block mb-2 text-sm font-semibold text-gray-700">Message *</label>
                         <textarea name="message" rows="8" required
                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                                  placeholder="Tell us how we can help you..."><?php echo htmlspecialchars($_POST['message'] ?? ''); ?></textarea>
+                                  placeholder="Tell us how we can help you..."><?php echo htmlspecialchars(isset($_POST['message']) ? $_POST['message'] : ''); ?></textarea>
                     </div>
 
                     <button type="submit"

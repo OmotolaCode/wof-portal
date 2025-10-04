@@ -1,0 +1,11 @@
+wof-portal
+Now do all the pages links left undone, for example enrollments.php, the logout.php, cohort_details, cohort.php student section, the student details page should be properly done, profile settings for student and their picture upload, the contact page from the student page, link to access cohort and the course outline, let the admin be able to fix the course outline, all links to pages not done. When cohort is approved, let the applicant be able to generate admission letter which the student can login and print. Also, as students are marked graduated and upon the examination grade above 70, let the admin be able to generate the certificate, and also the student can print their certificate when the access is released them. The certificate should be more designed with international certificate design more beautiful than the attached picture file. Let a cohorts have a picture to describe this cohort and automatically adjust the picture to fit the cohort listing div. It will make it look good. Fix every pages of graduate showcase pages that are not fix, now we have all the available cohort like the full stack frontend from the applied form fix them in the graduate showcase skills 
+
+
+Payment-requistion
+Let continue with the payment requisition, complete all pages, the broken links to pages, fix the notification to be real time when requisition is approved stages by stage from the head of departments and managers, send the notification to the originators dashboard and to the email address of the originator and the approving officers,. Do the report page for only the IT, Accounts, and Audit department to show analysis of total requisition expenses, for the month, and then year, retirement in any requisition, which means every requisitions must be able to accommodate retirement, money return if any. This retirement should only be posted by the account or audit officers to the requisition and updating with the requisition reference. I believe you understand this process. Do this like a pro, let all pages be completed. Do the coding properly to work with xamp 5.6 above.
+
+
+Redo the login functionality, I do not want an api login system but a direct login system coding, Cross region error disturbs the login system which makes it not working.
+
+6nb2rdvm6olh2lbq
