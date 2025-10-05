@@ -1,0 +1,158 @@
+===========================================
+WOF TRAINING PORTAL - DATABASE STRUCTURE
+MySQL 5.6 / XAMPP / PHPMyAdmin Compatible
+===========================================
+
+DATABASE NAME: wof_training_portal
+
+TABLES (13 Total):
+==================
+
+1. users
+   - id (INT, PK, AUTO_INCREMENT)
+   - email (VARCHAR 255, UNIQUE)
+   - password (VARCHAR 255) ✓ Matches PHP code
+   - first_name, last_name
+   - phone, date_of_birth, address
+   - nationality, linkedin_profile, emergency_contact
+   - user_type (ENUM: admin, student, graduate)
+   - status (ENUM: pending, approved, rejected, graduated)
+   - profile_image
+   - created_at, updated_at
+
+2. cohorts
+   - id (INT, PK, AUTO_INCREMENT)
+   - name (VARCHAR 100)
+   - description (TEXT)
+   - course_type (VARCHAR 100) ✓ ADDED - Required by PHP
+   - duration_months (INT)
+   - start_date, end_date (DATE)
+   - max_students (INT)
+   - status (ENUM: upcoming, active, completed)
+   - cohort_image (VARCHAR 255) ✓ ADDED
+   - course_outline (TEXT) ✓ ADDED
+   - created_at, updated_at
+
+3. applications
+   - id, user_id, cohort_id
+   - Personal: surname, first_name, other_names, gender, date_of_birth
+   - Contact: phone_number, email_address, contact_address, state_of_origin
+   - Education: highest_qualification, qualification_other
+   - English: english_speaking_level, english_understanding_level
+   - Course: course_choice, preferred_session
+   - Computer: computer_understanding, computer_understanding_other
+   - Marketing: how_heard_about, how_heard_other
+   - Legacy: motivation, education_background, work_experience
+   - Status: status, admin_notes, reviewed_by, reviewed_at, applied_at
+   - All fields are nullable (VARCHAR) to prevent strict type errors ✓
+
+4. enrollments
+   - id, user_id, cohort_id, application_id
+   - enrollment_date, completion_date
+   - status (ENUM: enrolled, completed, dropped)
+   - admission_letter_generated, admission_letter_filename, admission_letter_generated_at
+   - created_at, updated_at
+
+5. examinations
+   - id, user_id, cohort_id, enrollment_id
+   - exam_title, exam_date, exam_type
+   - score, max_score, total_marks, passing_marks, grade
+   - status (ENUM: scheduled, taken, passed, failed)
+   - admin_feedback, remarks
+   - created_at, updated_at
+
+6. certificates
+   - id, user_id, enrollment_id, examination_id
+   - certificate_number (VARCHAR 50, UNIQUE)
+   - certificate_filename, course_name
+   - issue_date, is_released, released_at
+   - generated_by, generated_at
+
+7. admission_letters
+   - id, application_id, user_id, cohort_id
+   - letter_number (VARCHAR 50, UNIQUE)
+   - letter_filename, issue_date
+   - generated_by, generated_at
+
+8. graduate_profiles
+   - id, user_id (UNIQUE)
+   - title, bio, skills
+   - linkedin_url, portfolio_url, github_url
+   - cv_filename, profile_image
+   - years_experience
+   - is_featured, is_visible, is_job_ready
+   - education_history, work_history, certifications
+   - languages, achievements, referenc
+   - created_at, updated_at
+
+9. testimonials
+   - id, user_id, cohort_id
+   - content, testimonial_text
+   - rating (INT)
+   - is_featured, is_active, is_approved
+   - approved_by, approved_at
+   - created_at, updated_at
+
+10. course_materials
+    - id, cohort_id
+    - title, description
+    - file_path, file_url
+    - material_type (ENUM: document, video, assignment, resource)
+    - week_number, sort_order
+    - is_active, is_visible
+    - uploaded_by
+    - created_at, updated_at
+
+11. events
+    - id, cohort_id
+    - title, description, event_type
+    - start_date, end_date, start_time, end_time
+    - location, max_participants
+    - status (ENUM: scheduled, ongoing, completed, cancelled)
+    - created_by
+    - created_at, updated_at
+
+12. graduate_certifications
+    - id, user_id, cohort_id
+    - certification_date
+    - certificate_number (VARCHAR 50, UNIQUE)
+    - skills_verified, admin_notes
+    - is_job_ready, certification_level
+    - created_by, created_at
+
+13. contact_messages
+    - id, user_id
+    - name, email, phone
+    - subject, message
+    - status, admin_response
+    - responded_by, responded_at
+    - created_at
+
+SAMPLE DATA:
+============
+- 1 admin user (admin@wof.edu / admin123)
+- 3 sample cohorts (Web Dev, Digital Marketing, Data Analytics)
+- 3 sample testimonials
+- 3 sample events
+- 1 sample certification
+
+ALL ISSUES FIXED:
+================
+✓ course_type column added to cohorts table
+✓ password column (not password_hash) in users table
+✓ All application fields are flexible VARCHAR (not strict ENUM)
+✓ All fields properly nullable to prevent insert errors
+✓ Foreign keys properly defined
+✓ Indexes added for performance
+✓ MySQL 5.6 compatible (no PostgreSQL syntax)
+✓ XAMPP/PHPMyAdmin compatible
+
+VERIFICATION:
+=============
+After import, run this query to verify:
+SELECT TABLE_NAME, TABLE_ROWS 
+FROM information_schema.TABLES 
+WHERE TABLE_SCHEMA = 'wof_training_portal' 
+ORDER BY TABLE_NAME;
+
+Should show 13 tables with sample data in users, cohorts, testimonials, events, and graduate_certifications.
