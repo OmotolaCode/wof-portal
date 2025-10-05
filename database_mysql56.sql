@@ -39,31 +39,15 @@ CREATE TABLE IF NOT EXISTS users (
 -- Cohorts table
 CREATE TABLE IF NOT EXISTS cohorts (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(200) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     description TEXT DEFAULT NULL,
-    course_type ENUM(
-        'desktop_publishing',
-        'graphics_design_ui_ux',
-        'web_design',
-        'digital_marketing',
-        'photography_video_editing',
-        'frontend_development',
-        'backend_development',
-        'fullstack_development',
-        'mobile_app_development',
-        'data_analytics'
-    ) NOT NULL,
-    duration_months INT NOT NULL DEFAULT 3,
+    duration_months INT NOT NULL,
     start_date DATE NOT NULL,
-    end_date DATE DEFAULT NULL,
-    max_students INT DEFAULT 30,
+    end_date DATE NOT NULL,
+    max_students INT DEFAULT 50,
     status ENUM('upcoming', 'active', 'completed') DEFAULT 'upcoming',
-    cohort_image VARCHAR(255) DEFAULT NULL,
-    course_outline TEXT DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_status (status),
-    INDEX idx_course_type (course_type),
     INDEX idx_start_date (start_date)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -74,83 +58,34 @@ CREATE TABLE IF NOT EXISTS applications (
     cohort_id INT NOT NULL,
 
     -- Personal Information
-    surname VARCHAR(100) NOT NULL,
-    first_name VARCHAR(100) NOT NULL,
+    surname VARCHAR(100) DEFAULT NULL,
+    first_name VARCHAR(100) DEFAULT NULL,
     other_names VARCHAR(100) DEFAULT NULL,
-    gender ENUM('male', 'female') NOT NULL,
-    date_of_birth DATE NOT NULL,
-    phone_number VARCHAR(20) NOT NULL,
-    email_address VARCHAR(255) NOT NULL,
-    contact_address TEXT NOT NULL,
-    state_of_origin VARCHAR(100) NOT NULL,
+    gender VARCHAR(20) DEFAULT NULL,
+    date_of_birth DATE DEFAULT NULL,
+    phone_number VARCHAR(20) DEFAULT NULL,
+    email_address VARCHAR(255) DEFAULT NULL,
+    contact_address TEXT DEFAULT NULL,
+    state_of_origin VARCHAR(100) DEFAULT NULL,
 
     -- Education
-    highest_qualification ENUM(
-        'olevel_ssce',
-        'undergraduate',
-        'national_diploma',
-        'nce',
-        'hnd',
-        'degree',
-        'postgraduate',
-        'other'
-    ) NOT NULL,
+    highest_qualification VARCHAR(100) DEFAULT NULL,
     qualification_other VARCHAR(200) DEFAULT NULL,
 
     -- English Proficiency
-    english_speaking_level ENUM(
-        'natural',
-        'easier_but_confused',
-        'quite_tricky',
-        'hard_to_string'
-    ) NOT NULL,
-    english_understanding_level ENUM(
-        'natural_as_native',
-        'most_time_but_lost',
-        'slow_and_clear',
-        'lost_easily'
-    ) NOT NULL,
+    english_speaking_level VARCHAR(100) DEFAULT NULL,
+    english_understanding_level VARCHAR(100) DEFAULT NULL,
 
     -- Course Selection
-    course_choice ENUM(
-        'desktop_publishing',
-        'graphics_design_ui_ux',
-        'web_design',
-        'digital_marketing',
-        'photography_video_editing',
-        'frontend_development',
-        'backend_development',
-        'fullstack_development',
-        'mobile_app_development',
-        'data_analytics'
-    ) NOT NULL,
-    preferred_session ENUM(
-        'morning_10_12',
-        'afternoon_230_430',
-        'weekends_8_1'
-    ) NOT NULL,
+    course_choice VARCHAR(100) DEFAULT NULL,
+    preferred_session VARCHAR(50) DEFAULT NULL,
 
     -- Computer Literacy
-    computer_understanding ENUM(
-        'can_operate',
-        'have_personal_effective',
-        'no_personal_but_operate',
-        'never_operated',
-        'other'
-    ) NOT NULL,
+    computer_understanding VARCHAR(100) DEFAULT NULL,
     computer_understanding_other VARCHAR(200) DEFAULT NULL,
 
     -- Marketing
-    how_heard_about ENUM(
-        'flyers',
-        'banner',
-        'road_jingle',
-        'social_media',
-        'radio_jingle',
-        'friend_relative',
-        'wof_batch1_student',
-        'other'
-    ) NOT NULL,
+    how_heard_about VARCHAR(100) DEFAULT NULL,
     how_heard_other VARCHAR(200) DEFAULT NULL,
 
     -- Legacy fields for backward compatibility
@@ -435,10 +370,10 @@ INSERT INTO users (email, password, first_name, last_name, user_type, status)
 VALUES ('admin@wof.edu', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'WOF', 'Administrator', 'admin', 'approved');
 
 -- Insert sample cohorts
-INSERT INTO cohorts (name, description, course_type, duration_months, start_date, end_date, max_students, status) VALUES
-('Web Development Bootcamp Q1 2025', 'Intensive 6-month web development program covering full-stack technologies', 'fullstack_development', 6, '2025-01-15', '2025-07-15', 30, 'upcoming'),
-('Digital Marketing Essentials', '4-month comprehensive digital marketing course', 'digital_marketing', 4, '2025-02-01', '2025-06-01', 25, 'upcoming'),
-('Data Analytics Fundamentals', '3-month data analysis and visualization program', 'data_analytics', 3, '2025-03-01', '2025-06-01', 20, 'upcoming');
+INSERT INTO cohorts (name, description, duration_months, start_date, end_date, max_students, status) VALUES
+('Web Development Bootcamp Q1 2025', 'Intensive 6-month web development program covering full-stack technologies', 6, '2025-01-15', '2025-07-15', 30, 'upcoming'),
+('Digital Marketing Essentials', '4-month comprehensive digital marketing course', 4, '2025-02-01', '2025-06-01', 25, 'upcoming'),
+('Data Analytics Fundamentals', '3-month data analysis and visualization program', 3, '2025-03-01', '2025-06-01', 20, 'upcoming');
 
 -- Insert sample testimonials
 INSERT INTO testimonials (user_id, cohort_id, content, testimonial_text, rating, is_featured, is_active, is_approved) VALUES
