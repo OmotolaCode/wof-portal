@@ -9,3 +9,7 @@ Let continue with the payment requisition, complete all pages, the broken links 
 Redo the login functionality, I do not want an api login system but a direct login system coding, Cross region error disturbs the login system which makes it not working.
 
 6nb2rdvm6olh2lbq
+
+
+The student session should tell the student to download the Guarantors form, this attached to be placed sowhere in the source code and to generate and download the Admission letter once their application form is approved. The admission letter sample is also attached for reference. The code should add the student's id number to the path in the admission letter that states the Student Number: WOF/ICT/C4/WB/…id...
+Also the Course of study should be fix to the course the student is admitted. It will be better if this admission letter is generated for download as some of the content will change according to student's choice. The guarators form can be downloaded directly since it doesn't have a special changes. Let all be in good format to download.
