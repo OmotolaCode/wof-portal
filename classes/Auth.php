@@ -15,20 +15,21 @@ class Auth {
         if($this->db->single()) {
             return ['success' => false, 'message' => 'Email already exists'];
         }
-        
+
         // Hash password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        
-        // Insert user
-        $this->db->query('INSERT INTO users (email, password, first_name, last_name, phone) VALUES (:email, :password, :first_name, :last_name, :phone)');
+
+        // Insert user with approved status (since registration is just for access)
+        $this->db->query('INSERT INTO users (email, password, first_name, last_name, phone, status) VALUES (:email, :password, :first_name, :last_name, :phone, "approved")');
         $this->db->bind(':email', $email);
         $this->db->bind(':password', $hashed_password);
         $this->db->bind(':first_name', $first_name);
         $this->db->bind(':last_name', $last_name);
         $this->db->bind(':phone', $phone);
-        
+
         if($this->db->execute()) {
-            return ['success' => true, 'message' => 'Registration successful'];
+            $user_id = $this->db->lastInsertId();
+            return ['success' => true, 'message' => 'Registration successful', 'user_id' => $user_id];
         } else {
             return ['success' => false, 'message' => 'Registration failed'];
         }
@@ -45,10 +46,14 @@ class Auth {
             }
             
             $_SESSION['user_id'] = $user['id'];
+            $_SESSION['email'] = $user['email'];
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['user_type'] = $user['user_type'];
             $_SESSION['user_status'] = $user['status'];
             $_SESSION['full_name'] = $user['first_name'] . ' ' . $user['last_name'];
+            $_SESSION['first_name'] = $user['first_name'];
+            $_SESSION['last_name'] = $user['last_name'];
+            $_SESSION['phone'] = $user['phone'];
             
             return ['success' => true, 'user_type' => $user['user_type']];
         } else {
