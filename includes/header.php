@@ -88,7 +88,7 @@ $current_user = $auth->getCurrentUser();
                     <?php if($auth->isLoggedIn()): ?>
                         <span class="text-gray-700">Welcome, <?php echo htmlspecialchars($_SESSION['full_name']); ?></span>
                         <div class="relative group">
-                            <button class="flex items-center space-x-1 text-gray-700 hover:text-primary">
+                            <button class="flex items-center space-x-1 text-gray-700 hover:text-primary" onclick="toggleDropdown('userDropdown')">
                                 <i class="fas fa-user-circle"></i>
                                 <i class="fas fa-chevron-down text-xs"></i>
                             </button>

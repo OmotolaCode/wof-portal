@@ -16,86 +16,6 @@ $db->query('SELECT * FROM cohorts WHERE status IN ("upcoming", "active") ORDER B
 $active_cohorts = $db->resultSet();
 ?>
 
-<!-- 
-Learning Environment Showcase Section - Commented out for future use
-<div class="relative bg-white py-8 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4"> Our Learning Environment </h2>
-            <p class="text-lg text-gray-600">State-of-the-art facilities designed for hands-on learning</p>
-        </div>
-        
-        <div class="relative h-96 overflow-hidden rounded-2xl shadow-2xl">
-            <div class="absolute inset-0 flex">
-                <div class="w-1/2 h-full relative overflow-hidden">
-                    <div class="absolute inset-0 transform -skew-x-6 origin-top-left scale-110">
-                        <img src="images/classroom1.jpg" alt="Students Learning" 
-                             class="w-full h-full object-cover transform skew-x-6 scale-90">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
-                    <div class="absolute bottom-6 left-6 text-white">
-                        <h3 class="text-xl font-bold mb-2">Interactive Learning</h3>
-                        <p class="text-sm opacity-90">Hands-on computer training with expert instructors</p>
-                    </div>
-                </div>
-                
-                <div class="w-1/2 h-full relative overflow-hidden">
-                    <div class="absolute inset-0 transform skew-x-6 origin-top-right scale-110">
-                        <img src="images/classroom2.jpg" alt="Collaborative Learning" 
-                             class="w-full h-full object-cover transform -skew-x-6 scale-90">
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-l from-secondary/20 to-transparent"></div>
-                    <div class="absolute bottom-6 right-6 text-white text-right">
-                        <h3 class="text-xl font-bold mb-2">Collaborative Environment</h3>
-                        <p class="text-sm opacity-90">Modern facilities fostering teamwork and innovation</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="absolute inset-0 flex items-center justify-center">
-                <div class="bg-white/95 backdrop-blur-sm rounded-full p-6 shadow-xl border-4 border-primary/20">
-                    <a href="register.php">
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-3">
-                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-gray-900"> Get FREE Lifetime Access </h4>
-                        <p class="text-sm text-gray-600"> Apply for the Current Cohort  </p>
-                    </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            <div class="text-center group">
-                <div class="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-laptop-code text-white text-xl"></i>
-                </div>
-                <h4 class="text-lg font-semibold mb-2 text-gray-900">Modern Technology</h4>
-                <p class="text-gray-600">Latest computers and software for practical learning</p>
-            </div>
-            
-            <div class="text-center group">
-                <div class="w-16 h-16 bg-gradient-to-br from-secondary to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-chalkboard-teacher text-white text-xl"></i>
-                </div>
-                <h4 class="text-lg font-semibold mb-2 text-gray-900">Expert Instructors</h4>
-                <p class="text-gray-600">Experienced professionals guiding your learning journey</p>
-            </div>
-            
-            <div class="text-center group">
-                <div class="w-16 h-16 bg-gradient-to-br from-coral to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-users text-white text-xl"></i>
-                </div>
-                <h4 class="text-lg font-semibold mb-2 text-gray-900">Collaborative Learning</h4>
-                <p class="text-gray-600">Interactive environment promoting teamwork and growth</p>
-            </div>
-        </div>
-    </div>
-</div>
--->
-
 <!-- Hero Section -->
 <div class="relative bg-gradient-to-br from-primary via-secondary to-emerald-600 text-white overflow-hidden min-h-screen">
     <!-- Background Image -->
@@ -117,32 +37,31 @@ Learning Environment Showcase Section - Commented out for future use
             <div class="flex justify-center mb-8">
                 <img src="images/wof_logo.png" alt="Whoba Ogo Foundation" class="h-24 w-auto">
             </div>
-            <h1 class="text-6xl font-bold mb-6 leading-tight">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 <span class="text-white">Whoba Ogo</span>
                 <span class="text-coral block">Foundation</span>
             </h1>
-            <p class="text-2xl mb-4 font-medium text-blue-100">...touching lives</p>
-            <p class="text-xl mb-8 max-w-4xl mx-auto leading-relaxed text-blue-50">
+            <p class="text-lg sm:text-2xl mb-4 font-medium text-blue-100">...touching lives</p>
+            <p class="text-base sm:text-xl mb-8 max-w-4xl mx-auto leading-relaxed text-blue-50">
                 Join our transformative cohorts and get <b>FREE</b> Lifetime Access
             </p>
 
             <?php if(!$auth->isLoggedIn()): ?>
-                <div class="space-x-4">
-                    <a href="register.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="register.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg text-center w-full sm:w-auto">
                         Join Current Cohort
                     </a>
-                    <a href="showcase.php" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all transform hover:scale-105">
+                    <a href="showcase.php" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all transform hover:scale-105 text-center w-full sm:w-auto">
                         Find Job-Ready Graduates
                     </a>
                 </div>
             <?php else: ?>
-                <a href="dashboard.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+                <a href="dashboard.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg text-center w-full sm:w-auto block mx-auto">
                     Access Dashboard
                 </a>
             <?php endif; ?>
         </div>
     </div>
-
 </div>
 
 <!-- Active Cohorts Section -->

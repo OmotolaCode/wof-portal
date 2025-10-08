@@ -1,3 +1,30 @@
+<script>
+    // **JAVASCRIPT FOR DROPDOWN FUNCTIONALITY**
+    function toggleDropdown(id) {
+        const dropdown = document.getElementById(id);
+        if (dropdown) {
+            // Close all other dropdowns (to prevent multiple open menus)
+            document.querySelectorAll('.relative > div.dropdown-menu').forEach(otherDropdown => {
+                if (otherDropdown.id !== id) {
+                    otherDropdown.classList.add('hidden');
+                }
+            });
+
+            // Toggle the clicked one
+            dropdown.classList.toggle('hidden');
+        }
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(event) {
+        // Check if the click is outside of any element that triggers or is a dropdown
+        if (!event.target.closest('.relative button') && !event.target.closest('.dropdown-menu')) {
+            document.querySelectorAll('.relative > div.dropdown-menu').forEach(dropdown => {
+                dropdown.classList.add('hidden');
+            });
+        }
+    });
+</script>
 <footer class="bg-gray-900 text-white mt-12">
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
