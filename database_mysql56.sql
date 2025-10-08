@@ -98,6 +98,11 @@ CREATE TABLE IF NOT EXISTS applications (
     education_background TEXT DEFAULT NULL,
     work_experience TEXT DEFAULT NULL,
 
+    -- Credentials Upload
+    credential_filename VARCHAR(255) DEFAULT NULL,
+    credential_file_type VARCHAR(50) DEFAULT NULL,
+    credential_uploaded_at TIMESTAMP NULL DEFAULT NULL,
+
     -- Application Status
     status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
     admin_notes TEXT DEFAULT NULL,

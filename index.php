@@ -49,7 +49,7 @@ $active_cohorts = $db->resultSet();
             <?php if(!$auth->isLoggedIn()): ?>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="register.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg text-center w-full sm:w-auto">
-                        Join Current Cohort
+                        Register for Access
                     </a>
                     <a href="showcase.php" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all transform hover:scale-105 text-center w-full sm:w-auto">
                         Find Job-Ready Graduates
@@ -100,9 +100,9 @@ $active_cohorts = $db->resultSet();
                                     Apply Now
                                 </a>
                             <?php else: ?>
-                                <a href="register.php" 
+                                <a href="register.php"
                                    class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium">
-                                    Join to Apply
+                                    Register for Access
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -118,7 +118,7 @@ $active_cohorts = $db->resultSet();
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <?php if(!$auth->isLoggedIn()): ?>
                         <a href="register.php" class="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">
-                            Register & Apply Today
+                            Register for Access
                         </a>
                     <?php else: ?>
                         <a href="dashboard.php" class="bg-white text-primary px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">
@@ -382,7 +382,7 @@ $active_cohorts = $db->resultSet();
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <?php if(!$auth->isLoggedIn()): ?>
                 <a href="register.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
-                    Apply for Next Cohort
+                    Register for Access
                 </a>
             <?php else: ?>
                 <a href="dashboard.php" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">

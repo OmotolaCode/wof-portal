@@ -44,23 +44,62 @@ if($existing_application) {
 if($_SERVER['REQUEST_METHOD'] === 'POST' && !$existing_application) {
     // Basic validation
     $required_fields = [
-        'surname', 'first_name', 'gender', 'date_of_birth', 'phone_number', 
+        'surname', 'first_name', 'gender', 'date_of_birth', 'phone_number',
         'email_address', 'contact_address', 'state_of_origin', 'highest_qualification',
         'english_speaking_level', 'english_understanding_level', 'course_choice',
         'preferred_session', 'computer_understanding', 'how_heard_about',
         'motivation', 'education_background'
     ];
-    
+
     $missing_fields = [];
     foreach($required_fields as $field) {
         if(empty(trim($_POST[$field]))) {
             $missing_fields[] = $field;
         }
     }
-    
+
+    // Validate file upload
+    if(!isset($_FILES['credential_file']) || $_FILES['credential_file']['error'] === UPLOAD_ERR_NO_FILE) {
+        $missing_fields[] = 'credential file';
+    }
+
     if(!empty($missing_fields)) {
         $error = 'Please fill in all required fields: ' . implode(', ', $missing_fields);
     } else {
+        // Handle credential file upload
+        $credential_filename = null;
+        $credential_file_type = null;
+
+        if(isset($_FILES['credential_file']) && $_FILES['credential_file']['error'] === UPLOAD_ERR_OK) {
+            $file = $_FILES['credential_file'];
+            $allowed_types = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+            $max_size = 5 * 1024 * 1024; // 5MB
+
+            if(!in_array($file['type'], $allowed_types)) {
+                $error = 'Invalid file type. Please upload PDF, JPG, JPEG, or PNG file.';
+            } elseif($file['size'] > $max_size) {
+                $error = 'File size exceeds 5MB limit.';
+            } else {
+                // Create uploads directory if it doesn't exist
+                $upload_dir = 'uploads/credentials/';
+                if(!is_dir($upload_dir)) {
+                    mkdir($upload_dir, 0755, true);
+                }
+
+                // Generate unique filename
+                $file_extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+                $credential_filename = 'credential_' . $_SESSION['user_id'] . '_' . time() . '.' . $file_extension;
+                $upload_path = $upload_dir . $credential_filename;
+
+                if(!move_uploaded_file($file['tmp_name'], $upload_path)) {
+                    $error = 'Failed to upload credential file. Please try again.';
+                } else {
+                    $credential_file_type = $file['type'];
+                }
+            }
+        }
+
+        if(empty($error)) {
         // Collect all form data
         $surname = trim($_POST['surname']);
         $first_name = trim($_POST['first_name']);
@@ -91,13 +130,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !$existing_application) {
             phone_number, email_address, contact_address, state_of_origin, highest_qualification,
             qualification_other, english_speaking_level, english_understanding_level, course_choice,
             preferred_session, computer_understanding, computer_understanding_other, how_heard_about,
-            how_heard_other, motivation, education_background, work_experience
+            how_heard_other, motivation, education_background, work_experience,
+            credential_filename, credential_file_type, credential_uploaded_at
         ) VALUES (
             :user_id, :cohort_id, :surname, :first_name, :other_names, :gender, :date_of_birth,
             :phone_number, :email_address, :contact_address, :state_of_origin, :highest_qualification,
             :qualification_other, :english_speaking_level, :english_understanding_level, :course_choice,
             :preferred_session, :computer_understanding, :computer_understanding_other, :how_heard_about,
-            :how_heard_other, :motivation, :education_background, :work_experience
+            :how_heard_other, :motivation, :education_background, :work_experience,
+            :credential_filename, :credential_file_type, NOW()
         )');
         
         $db->bind(':user_id', $_SESSION['user_id']);
@@ -124,11 +165,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !$existing_application) {
         $db->bind(':motivation', $motivation);
         $db->bind(':education_background', $education_background);
         $db->bind(':work_experience', $work_experience);
-        
+        $db->bind(':credential_filename', $credential_filename);
+        $db->bind(':credential_file_type', $credential_file_type);
+
         if($db->execute()) {
             $message = 'Application submitted successfully! You will be notified once it is reviewed.';
         } else {
             $error = 'Failed to submit application. Please try again.';
+        }
         }
     }
 }
@@ -182,20 +226,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !$existing_application) {
         <div class="bg-white rounded-lg shadow-lg p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-6">Comprehensive Application Form</h3>
             
-            <form method="POST" class="space-y-8">
+            <form method="POST" enctype="multipart/form-data" class="space-y-8">
                 <!-- Personal Information -->
                 <div class="border-b border-gray-200 pb-6">
                     <h4 class="text-lg font-semibold text-gray-900 mb-4">Personal Information</h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="surname" class="block text-sm font-medium text-gray-700">Surname *</label>
-                            <input type="text" id="surname" name="surname" required
+                            <input type="text" id="surname" name="surname" value="<?php echo isset($_SESSION['last_name']) ? htmlspecialchars($_SESSION['last_name']) : ''; ?>" required
                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-primary focus:border-primary">
                         </div>
-                        
+
                         <div>
                             <label for="first_name" class="block text-sm font-medium text-gray-700">First Name *</label>
-                            <input type="text" id="first_name" name="first_name" required
+                            <input type="text" id="first_name" name="first_name" value="<?php echo isset($_SESSION['first_name']) ? htmlspecialchars($_SESSION['first_name']) : ''; ?>" required
                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-primary focus:border-primary">
                         </div>
                         
@@ -223,7 +267,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !$existing_application) {
                         
                         <div>
                             <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number *</label>
-                            <input type="tel" id="phone_number" name="phone_number" required
+                            <input type="tel" id="phone_number" name="phone_number" value="<?php echo isset($_SESSION['phone']) ? htmlspecialchars($_SESSION['phone']) : ''; ?>" required
                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-primary focus:border-primary">
                         </div>
                         
@@ -400,6 +444,29 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && !$existing_application) {
                     </div>
                 </div>
                 
+                <!-- Credentials Upload -->
+                <div class="border-b border-gray-200 pb-6">
+                    <h4 class="text-lg font-semibold text-gray-900 mb-4">Upload Your Credentials</h4>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                        <p class="text-sm text-blue-800 mb-2"><i class="fas fa-info-circle mr-2"></i><strong>Required Document:</strong></p>
+                        <ul class="text-sm text-blue-700 space-y-1 ml-6">
+                            <li>Upload your educational certificate or qualification document</li>
+                            <li>Accepted formats: PDF, JPG, JPEG, PNG (Max size: 5MB)</li>
+                            <li>Ensure document is clear and legible</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <label for="credential_file" class="block text-sm font-medium text-gray-700 mb-2">
+                            Educational Certificate/Credential *
+                            <span class="text-xs text-gray-500">(PDF, JPG, JPEG, PNG - Max 5MB)</span>
+                        </label>
+                        <input type="file" id="credential_file" name="credential_file"
+                               accept=".pdf,.jpg,.jpeg,.png" required
+                               class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-primary focus:border-primary p-2">
+                        <p class="text-xs text-gray-500 mt-1">Admin will be able to view your document directly in the portal</p>
+                    </div>
+                </div>
+
                 <!-- Additional Information -->
                 <div>
                     <h4 class="text-lg font-semibold text-gray-900 mb-4">Additional Information</h4>

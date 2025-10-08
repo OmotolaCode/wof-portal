@@ -26,7 +26,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $result = $auth->register($email, $password, $first_name, $last_name, $phone);
         if($result['success']) {
-            $message = 'Registration successful! Login to explore our available cohort, apply and get approved.';
+            // Auto-login after successful registration
+            $login_result = $auth->login($email, $password);
+            if($login_result['success']) {
+                header('Location: dashboard.php');
+                exit();
+            } else {
+                $message = 'Registration successful! Please login to continue.';
+            }
         } else {
             $error = $result['message'];
         }
@@ -37,8 +44,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8">
         <div class="text-center">
-            <h2 class="text-3xl font-bold text-gray-900">Create Your Account</h2>
-            <p class="mt-2 text-black-800">Join WOF Training Institute, start your journey and get FREE Lifetime Access</p>
+            <h2 class="text-3xl font-bold text-gray-900">Register for Access</h2>
+            <p class="mt-2 text-black-800">Create your account to access the WOF Training Portal and explore available cohorts</p>
         </div>
         
         <?php if($message): ?>
@@ -92,7 +99,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             
             <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary transition">
-                Create Account
+                Register for Access
             </button>
             
             <div class="text-center">

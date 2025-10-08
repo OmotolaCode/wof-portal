@@ -133,14 +133,13 @@ $applications = $db->resultSet();
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <a href="application_details.php?id=<?php echo $app['id']; ?>"
+                                   class="text-primary hover:text-blue-900 mr-3">View Details</a>
                                 <?php if($app['status'] === 'pending'): ?>
-                                    <button onclick="openModal(<?php echo $app['id']; ?>, 'approve')" 
+                                    <button onclick="openModal(<?php echo $app['id']; ?>, 'approve')"
                                             class="text-green-600 hover:text-green-900 mr-3">Approve</button>
-                                    <button onclick="openModal(<?php echo $app['id']; ?>, 'reject')" 
+                                    <button onclick="openModal(<?php echo $app['id']; ?>, 'reject')"
                                             class="text-red-600 hover:text-red-900">Reject</button>
-                                <?php else: ?>
-                                    <a href="application_details.php?id=<?php echo $app['id']; ?>" 
-                                       class="text-primary hover:text-blue-900">View Details</a>
                                 <?php endif; ?>
                             </td>
                         </tr>
@@ -177,13 +176,22 @@ $applications = $db->resultSet();
 
 <script>
 function openModal(applicationId, action) {
+    // Confirmation before opening modal
+    const confirmMessage = action === 'approve'
+        ? 'Are you sure you want to APPROVE this application? The student will be enrolled in the cohort.'
+        : 'Are you sure you want to REJECT this application? This action cannot be easily undone.';
+
+    if(!confirm(confirmMessage)) {
+        return;
+    }
+
     document.getElementById('applicationId').value = applicationId;
     document.getElementById('actionType').value = action;
-    
+
     const modal = document.getElementById('reviewModal');
     const title = document.getElementById('modalTitle');
     const submitBtn = document.getElementById('submitBtn');
-    
+
     if(action === 'approve') {
         title.textContent = 'Approve Application';
         submitBtn.textContent = 'Approve';
@@ -193,7 +201,7 @@ function openModal(applicationId, action) {
         submitBtn.textContent = 'Reject';
         submitBtn.className = 'px-4 py-2 rounded-lg text-white bg-red-600 hover:bg-red-700';
     }
-    
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
 }

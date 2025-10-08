@@ -275,6 +275,54 @@ function getSessionText($value) {
             </div>
         </div>
         
+        <!-- Credentials Section -->
+        <div class="bg-white rounded-lg shadow-lg p-6 lg:col-span-2">
+            <h3 class="text-lg font-bold text-gray-900 mb-6 border-b border-gray-200 pb-2">Uploaded Credentials</h3>
+
+            <?php if($application['credential_filename']): ?>
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                <?php
+                                $file_ext = pathinfo($application['credential_filename'], PATHINFO_EXTENSION);
+                                if($file_ext === 'pdf'):
+                                ?>
+                                    <i class="fas fa-file-pdf text-white text-2xl"></i>
+                                <?php else: ?>
+                                    <i class="fas fa-file-image text-white text-2xl"></i>
+                                <?php endif; ?>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Educational Certificate</h4>
+                                <p class="text-sm text-gray-600">
+                                    Uploaded: <?php echo $application['credential_uploaded_at'] ? date('M j, Y g:i A', strtotime($application['credential_uploaded_at'])) : 'N/A'; ?>
+                                </p>
+                                <p class="text-sm text-gray-600">
+                                    Type: <?php echo strtoupper($file_ext); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <a href="view_credential.php?id=<?php echo $application['id']; ?>" target="_blank"
+                           class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition flex items-center">
+                            <i class="fas fa-eye mr-2"></i>View Document
+                        </a>
+                        <a href="../uploads/credentials/<?php echo htmlspecialchars($application['credential_filename']); ?>" download
+                           class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition flex items-center">
+                            <i class="fas fa-download mr-2"></i>Download
+                        </a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <p class="text-yellow-800"><i class="fas fa-exclamation-triangle mr-2"></i>No credential uploaded</p>
+                </div>
+            <?php endif; ?>
+        </div>
+
         <!-- Marketing & Motivation -->
         <div class="bg-white rounded-lg shadow-lg p-6 lg:col-span-2">
             <h3 class="text-lg font-bold text-gray-900 mb-6 border-b border-gray-200 pb-2">Marketing Source & Motivation</h3>
@@ -364,13 +412,22 @@ function getSessionText($value) {
 
 <script>
 function openModal(applicationId, action) {
+    // Confirmation before opening modal
+    const confirmMessage = action === 'approve'
+        ? 'Are you sure you want to APPROVE this application? The student will be enrolled in the cohort.'
+        : 'Are you sure you want to REJECT this application? This action cannot be easily undone.';
+
+    if(!confirm(confirmMessage)) {
+        return;
+    }
+
     document.getElementById('applicationId').value = applicationId;
     document.getElementById('actionType').value = action;
-    
+
     const modal = document.getElementById('reviewModal');
     const title = document.getElementById('modalTitle');
     const submitBtn = document.getElementById('submitBtn');
-    
+
     if(action === 'approve') {
         title.textContent = 'Approve Application';
         submitBtn.textContent = 'Approve';
@@ -380,7 +437,7 @@ function openModal(applicationId, action) {
         submitBtn.textContent = 'Reject';
         submitBtn.className = 'px-4 py-2 rounded-lg text-white bg-red-600 hover:bg-red-700';
     }
-    
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
 }
