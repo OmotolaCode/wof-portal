@@ -289,34 +289,41 @@ sort($all_skills);
                             </div>
                         <?php endif; ?>
                         
-                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                            <div class="flex items-center space-x-4">
-                                <?php if($graduate['linkedin_url']): ?>
-                                    <a href="<?php echo htmlspecialchars($graduate['linkedin_url']); ?>" 
-                                       target="_blank" class="text-blue-600 hover:text-blue-800 transition-colors">
-                                        <i class="fab fa-linkedin text-xl"></i>
-                                    </a>
-                                <?php endif; ?>
-                                
-                                <?php if($graduate['portfolio_url']): ?>
-                                    <a href="<?php echo htmlspecialchars($graduate['portfolio_url']); ?>" 
-                                       target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors">
-                                        <i class="fas fa-external-link-alt text-xl"></i>
-                                    </a>
-                                <?php endif; ?>
-                                
-                                <?php if($graduate['cv_filename']): ?>
-                                    <a href="uploads/cvs/<?php echo htmlspecialchars($graduate['cv_filename']); ?>" 
-                                       target="_blank" class="text-red-600 hover:text-red-800 transition-colors">
-                                        <i class="fas fa-file-pdf text-xl"></i>
-                                    </a>
-                                <?php endif; ?>
-                            </div>
-                            
-                            <div class="text-sm text-gray-500 font-medium">
-                                <?php if($graduate['years_experience']): ?>
-                                    <i class="fas fa-briefcase mr-1"></i><?php echo $graduate['years_experience']; ?>+ years
-                                <?php endif; ?>
+                        <div class="pt-4 border-t border-gray-100">
+                            <a href="graduate_profile.php?id=<?php echo $graduate['user_id']; ?>"
+                               class="block w-full bg-primary text-white text-center py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all mb-3">
+                                <i class="fas fa-user mr-2"></i>View Full Profile
+                            </a>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <?php if($graduate['linkedin_url']): ?>
+                                        <a href="<?php echo htmlspecialchars($graduate['linkedin_url']); ?>"
+                                           target="_blank" class="text-blue-600 hover:text-blue-800 transition-colors">
+                                            <i class="fab fa-linkedin text-xl"></i>
+                                        </a>
+                                    <?php endif; ?>
+
+                                    <?php if($graduate['portfolio_url']): ?>
+                                        <a href="<?php echo htmlspecialchars($graduate['portfolio_url']); ?>"
+                                           target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors">
+                                            <i class="fas fa-external-link-alt text-xl"></i>
+                                        </a>
+                                    <?php endif; ?>
+
+                                    <?php if($graduate['cv_filename']): ?>
+                                        <a href="uploads/cvs/<?php echo htmlspecialchars($graduate['cv_filename']); ?>"
+                                           target="_blank" class="text-red-600 hover:text-red-800 transition-colors">
+                                            <i class="fas fa-file-pdf text-xl"></i>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="text-sm text-gray-500 font-medium">
+                                    <?php if($graduate['years_experience']): ?>
+                                        <i class="fas fa-briefcase mr-1"></i><?php echo $graduate['years_experience']; ?>+ years
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
